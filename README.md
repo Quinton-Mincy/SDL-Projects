@@ -12,5 +12,6 @@ SDL Documentation : https://www.libsdl.org/
 
 ## User Input
 
-##### The users keyboard and mouse inputs are currently being registered, but are not yet saved
+##### The users keyboardentries and mouse inputs (the (x,y) coordinates of their mouse clicks relative to the origin of the SDL window) are currently being registered, but are not yet saved
 
+![Screen Shot 2022-10-07 at 6 04 17 PM](https://user-images.githubusercontent.com/73136662/194669667-e43a75c8-1f42-45af-b6b6-6b588dff8f4b.png)
