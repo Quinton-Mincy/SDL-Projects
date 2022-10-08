@@ -3,6 +3,19 @@
 #include <stdio.h>
 #include <stdbool.h>
 //
+void renderPopUp(SDL_Rect* popUp, SDL_Renderer* renderer){
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+        SDL_RenderDrawRect(renderer,popUp);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+        SDL_RenderFillRect(renderer,popUp);
+}
+
+void renderClouds(SDL_Renderer* renderer, SDL_Texture* cloudTexture, SDL_Rect* cloud0, SDL_Rect* cloud1, SDL_Rect* cloud2){
+    SDL_RenderCopy(renderer, cloudTexture, NULL, cloud0);//render clouds
+    SDL_RenderCopy(renderer, cloudTexture, NULL, cloud1);
+    SDL_RenderCopy(renderer, cloudTexture, NULL, cloud2);
+}
+
 int main(int argc, char** argv){
     SDL_Window* window;
     SDL_Renderer* renderer;
@@ -51,18 +64,19 @@ int main(int argc, char** argv){
         int x, y;
         SDL_Event event;
         //move clouds across the screen
+        cloud0.x++;
         if(cloud0.x == (699)){
             cloud0.x = 0;
-        }else if(cloud1.x == (699)){
+        }
+        cloud1.x++;
+        if(cloud1.x == (699)){
             cloud1.x = 0;
-        }else if(cloud2.x == (699)){
+        }
+        cloud2.x++;
+        if(cloud2.x == (699)){
             cloud2.x = 0;
         }
-        else{
-            cloud0.x++;
-            cloud1.x++;
-            cloud2.x++;
-        }
+
         while(SDL_PollEvent(&event)){
             if(event.type == SDL_QUIT){
                 eventLoopActive = false;
@@ -88,15 +102,11 @@ int main(int argc, char** argv){
 
         SDL_Delay(40);//slows cloud animation
 
-        SDL_RenderCopy(renderer, cloudTexture, NULL, &cloud0);//render clouds
-        SDL_RenderCopy(renderer, cloudTexture, NULL, &cloud1);
-        SDL_RenderCopy(renderer, cloudTexture, NULL, &cloud2);
+        //render clouds
+        renderClouds(renderer,cloudTexture, &cloud0, &cloud1, &cloud2);
         
         //render in password authentication pop up
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-        SDL_RenderDrawRect(renderer,&popUp);
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-        SDL_RenderFillRect(renderer,&popUp);
+        renderPopUp(&popUp, renderer);
 
         SDL_RenderPresent(renderer);//display new render. Similar to update window, but instead of using a double buffer and flipping between them, we render entire screen through each loop
     }
