@@ -17,6 +17,14 @@ void renderClouds(SDL_Renderer* renderer, SDL_Texture* cloudTexture, SDL_Rect* c
 }
 
 int main(int argc, char** argv){
+        
+    if(SDL_Init(SDL_INIT_VIDEO) < 0){
+        printf("SDL RENDER FAILED... ERROR: %s\n",SDL_GetError());
+        return -1;
+    }else{
+        printf("SDL RENDER INITIALIZED\n");
+    }
+        
     SDL_Window* window;
     SDL_Renderer* renderer;
     SDL_Surface* cloudSurface;
@@ -45,13 +53,12 @@ int main(int argc, char** argv){
     cloud2.h = 50;
     cloud2.w = 50;
 
-    if(SDL_Init(SDL_INIT_VIDEO) < 0){
-        printf("SDL RENDER FAILED... ERROR: %s\n",SDL_GetError());
-    }else{
-        printf("SDL RENDER INITIALIZED\n");
-    }
-
     window = SDL_CreateWindow("SDL Password Manager", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 700, 700, SDL_WINDOW_SHOWN);
+    
+    if(window == NULL){
+            printf("WINDOW CREATION FAILED... ERROR: %s\n",SDL_GetError());
+    }
+        
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     cloudSurface =  SDL_LoadBMP("./images/cloud.bmp");
 
