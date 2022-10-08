@@ -22,6 +22,7 @@ int main(int argc, char** argv){
     SDL_Surface* cloudSurface;
     SDL_Texture* cloudTexture;
 
+    //initialize cloud starting positions
     SDL_Rect popUp;
     popUp.x = 150;
     popUp.y = 200;
