@@ -19,10 +19,10 @@ void renderClouds(SDL_Renderer* renderer, SDL_Texture* cloudTexture, SDL_Rect* c
 int main(int argc, char** argv){
         
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
-        printf("SDL RENDER FAILED... ERROR: %s\n",SDL_GetError());
+        printf("SDL VIDEO FAILED... ERROR: %s\n",SDL_GetError());
         return -1;
     }else{
-        printf("SDL RENDER INITIALIZED\n");
+        printf("SDL VIDEO INITIALIZED\n");
     }
         
     SDL_Window* window;
@@ -53,18 +53,27 @@ int main(int argc, char** argv){
     cloud2.h = 50;
     cloud2.w = 50;
 
+    //create window
     window = SDL_CreateWindow("SDL Password Manager", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 700, 700, SDL_WINDOW_SHOWN);
-    
     if(window == NULL){
-            printf("WINDOW CREATION FAILED... ERROR: %s\n",SDL_GetError());
+        printf("WINDOW CREATION FAILED... ERROR: %s\n",SDL_GetError());
+        return -1;
     }
-        
+
+    //create render
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if(renderer == NULL){
+        printf("RENDER CREATION FAILED... ERROR: %s\n",SDL_GetError());
+        return -1;
+    }
+    //create texture from surface
     cloudSurface =  SDL_LoadBMP("./images/cloud.bmp");
-
     SDL_SetColorKey(cloudSurface, SDL_TRUE, SDL_MapRGB(cloudSurface->format, 0xFF, 0, 0xFF));
-
     cloudTexture = SDL_CreateTextureFromSurface(renderer, cloudSurface);
+    if(cloudTexture == NULL){
+        printf("TEXTURE CREATION FAILED... ERROR: %s\n",SDL_GetError());
+        return -1;
+    }
     SDL_FreeSurface(cloudSurface);
 
     bool eventLoopActive = true;
