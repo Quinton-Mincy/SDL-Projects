@@ -6,7 +6,7 @@ SDL Documentation : https://www.libsdl.org/
 
 ## Moving Forward
 
-After experimenting with the SDL library and SDL_ttf libraries, I have come to the conclusion that they are not the best tools for the job for this project (at least on there own), specifically for dynamically displaying characters on the screen. I plan to incorporate openGL (which is what SDL is actually built from) and freetype2. 
+After experimenting with the SDL library and SDL_ttf libraries, I have come to the conclusion that they are not the best tools for the job for this project (at least on there own), specifically for dynamically displaying characters on the screen. I plan to incorporate openGL (which is what SDL is actually built from) and freetype2. Keeping track of user inputs (keyboard inputs and mopuse tracking) will still be handled by SDL.
 
 
 
