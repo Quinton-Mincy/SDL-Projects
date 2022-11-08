@@ -4,6 +4,12 @@ Download SDL Library: https://github.com/libsdl-org/SDL/releases/tag/release-2.2
 
 SDL Documentation : https://www.libsdl.org/
 
+## Moving Forward
+
+After experimenting with the SDL library and SDL_ttf libraries, I have come to the conclusion that they are not the best tools for the job for this project (at least on there own), specifically for dynamically displaying characters on the screen. I plan to incorporate openGL (which is what SDL is actually built from) and freetype2. 
+
+
+
 
 ## Password Manager
 
